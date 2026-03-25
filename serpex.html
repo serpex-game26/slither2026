@@ -593,21 +593,6 @@
   .lb-entry.top3 { color: #cd7f32; }
 
   /* Controls */
-  /* ─── JOYSTICK FIXE : visible uniquement dans l'APK / PWA installée ─── */
-  #joystickZone {
-    display: none;
-  }
-  @media (display-mode: standalone) {
-    #joystickZone { display: block !important; }
-  }
-  @media (display-mode: standalone) and (min-width: 600px) {
-    #joystickZone { width: 180px !important; height: 180px !important; }
-    #joystickKnob { width: 68px !important; height: 68px !important; }
-    .boost-btn { width: 100px !important; height: 100px !important; }
-    .skill-btn { width: 72px !important; height: 72px !important; }
-    .controls-area { height: 200px !important; padding-left: 210px !important; }
-  }
-
   .controls-area {
     position: absolute;
     bottom: 0;
@@ -1624,7 +1609,7 @@
     <a href="privacy.html" style="color:rgba(255,255,255,0.4);margin:0 0.5rem;text-decoration:none;">Confidentialité</a>
     <a href="terms.html" style="color:rgba(255,255,255,0.4);margin:0 0.5rem;text-decoration:none;">CGU</a>
     <a href="contact.html" style="color:rgba(255,255,255,0.4);margin:0 0.5rem;text-decoration:none;">Contact</a>
-    <br><br>© 2026 SERPEX · serpex-game26.github.io · ca-pub-5433648295830648 · <a href="mailto:hervecaporale17@gmail.com" style="color:rgba(255,255,255,0.4);text-decoration:none;">hervecaporale17@gmail.com</a>
+    <br><br>© 2026 SERPEX · serpex-game26.github.io · ca-pub-5433648295830648
   </div>
 </div>
 </div>
@@ -1846,7 +1831,7 @@
   <!-- &#9472;&#9472; FOOTER ADSENSE PERMANENT &#9472;&#9472; -->
   <div style="width:min(420px,95vw);margin-top:0.6rem;padding:0.6rem 0;border-top:1px solid rgba(255,255,255,0.06);text-align:center;display:flex;flex-direction:column;gap:0.3rem;">
     <div style="font-size:0.4rem;color:rgba(255,255,255,0.2);letter-spacing:0.05em;">
-      © 2026 SERPEX · serpex-game26.github.io · Google AdSense ca-pub-5433648295830648 · <a href="mailto:hervecaporale17@gmail.com" style="color:rgba(255,255,255,0.4);text-decoration:none;">hervecaporale17@gmail.com</a>
+      © 2026 SERPEX · serpex-game26.github.io · Google AdSense ca-pub-5433648295830648
     </div>
     <div style="display:flex;justify-content:center;gap:0.8rem;flex-wrap:wrap;">
       <button onclick="showScreen('privacyScreen')" style="background:none;border:none;color:rgba(0,245,255,0.5);cursor:pointer;font-size:0.45rem;text-decoration:underline;font-family:'Orbitron',monospace;padding:0;">&#128274; Politique de confidentialité</button>
@@ -2072,74 +2057,39 @@
       <div class="power-bar-bg"><div class="power-bar-fill" id="powerBar" style="width:100%"></div></div>
     </div>
 
-    <div class="minimap" id="minimap">
+    <div class="minimap">
       <canvas id="minimapCanvas"></canvas>
     </div>
 
-    <!-- ══ JOYSTICK VIRTUEL FIXE (bas gauche) ══ -->
-    <div id="joystickZone" style="
-      position:absolute;
-      bottom: max(env(safe-area-inset-bottom,0px), 20px);
-      left: 16px;
-      width: 140px;
-      height: 140px;
-      z-index: 10;
-      pointer-events: all;
-      touch-action: none;
-    ">
-      <!-- Base du joystick -->
-      <div id="joystickBase" style="
-        position:absolute;
-        inset:0;
-        border-radius:50%;
-        background: radial-gradient(circle, rgba(0,245,255,0.08) 0%, rgba(0,245,255,0.03) 70%, transparent 100%);
-        border: 2px solid rgba(0,245,255,0.25);
-        box-shadow: 0 0 20px rgba(0,245,255,0.1);
-      "></div>
-      <!-- Croix directionnelle indicative -->
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
-        <div style="color:rgba(0,245,255,0.15);font-size:1.1rem;user-select:none;">✛</div>
-      </div>
-      <!-- Stick (knob) -->
-      <div id="joystickKnob" style="
-        position:absolute;
-        width: 52px;
-        height: 52px;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 50%;
-        background: radial-gradient(circle at 35% 35%, rgba(0,245,255,0.9), rgba(0,80,180,0.85));
-        border: 2.5px solid rgba(0,245,255,0.7);
-        box-shadow: 0 0 18px rgba(0,245,255,0.5), inset 0 0 10px rgba(255,255,255,0.1);
-        transition: none;
-        pointer-events: none;
-      "></div>
-    </div>
+    <!-- Joystick virtuel -->
+<!-- joystick supprimé — direction via toucher direct -->
 
-    <div class="controls-area" style="padding-left:170px;">
+    <div class="controls-area">
       <!-- Skill gauche (build slot 0) -->
-      <div class="skill-btn" id="skillBtn0" style="border-color:var(--neon-cyan);width:64px;height:64px;" ontouchstart="useSkill(0)" onclick="useSkill(0)">
-        <span id="skillIcon0" style="font-size:1.6rem;">&#128737;&#65039;</span>
+      <div class="skill-btn" id="skillBtn0" style="border-color:var(--neon-cyan);" ontouchstart="useSkill(0)" onclick="useSkill(0)">
+        <span id="skillIcon0">&#128737;&#65039;</span>
         <div class="skill-cd" id="cd0" style="display:none"></div>
         <div class="skill-label" id="skillLabel0" style="color:var(--neon-cyan)">SKILL</div>
       </div>
 
-      <!-- Boost au centre -->
-      <div class="boost-btn" id="boostBtn" style="width:90px;height:90px;">
-        <div class="icon" style="font-size:2rem;">&#9889;</div>
-        <span style="font-size:0.65rem;">BOOST</span>
+      <!-- Joystick zone (center) -->
+      <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+        <div class="boost-btn" id="boostBtn">
+          <div class="icon">&#9889;</div>
+          BOOST
+        </div>
+        <div style="font-size:0.55rem;color:rgba(255,255,255,0.3);letter-spacing:0.1em;">GLISSE POUR DIRIGER</div>
       </div>
 
       <!-- Skills droite (build slots 1 & 2) -->
       <div style="display:flex;flex-direction:column;gap:0.6rem;align-items:center;">
-        <div class="skill-btn" id="skillBtn1" style="border-color:var(--neon-gold);width:64px;height:64px;" ontouchstart="useSkill(1)" onclick="useSkill(1)">
-          <span id="skillIcon1" style="font-size:1.6rem;">&#129522;</span>
+        <div class="skill-btn" id="skillBtn1" style="border-color:var(--neon-gold);" ontouchstart="useSkill(1)" onclick="useSkill(1)">
+          <span id="skillIcon1">&#129522;</span>
           <div class="skill-cd" id="cd1" style="display:none"></div>
           <div class="skill-label" id="skillLabel1" style="color:var(--neon-gold)">SKILL</div>
         </div>
-        <div class="skill-btn" id="skillBtn2" style="border-color:var(--neon-pink);width:56px;height:56px;" ontouchstart="useSkill(2)" onclick="useSkill(2)">
-          <span id="skillIcon2" style="font-size:1.4rem;">&#128163;</span>
+        <div class="skill-btn" id="skillBtn2" style="border-color:var(--neon-pink);width:48px;height:48px;" ontouchstart="useSkill(2)" onclick="useSkill(2)">
+          <span id="skillIcon2">&#128163;</span>
           <div class="skill-cd" id="cd2" style="display:none"></div>
           <div class="skill-label" id="skillLabel2" style="color:var(--neon-pink)">SKILL</div>
         </div>
@@ -7774,113 +7724,24 @@ function getTouchCanvasPos(touch) {
 }
 
 function setupControls() {
-  // ═══ JOYSTICK FIXE (bas gauche) — Mobile/Tablette ═══
-  const joyZone = document.getElementById('joystickZone');
-  const joyKnob = document.getElementById('joystickKnob');
-  const JOY_R   = 44; // rayon max du knob (demi-largeur base - demi-knob)
-
-  if (joyZone && joyKnob && IS_STANDALONE) {
-    let joyTouchId = null;
-
-    function joyStart(clientX, clientY) {
-      const rect = joyZone.getBoundingClientRect();
-      const baseX = rect.left + rect.width  * 0.5;
-      const baseY = rect.top  + rect.height * 0.5;
-      joystick.active = true;
-      joystick.baseX  = baseX;
-      joystick.baseY  = baseY;
-      joyMove(clientX, clientY);
-    }
-
-    function joyMove(clientX, clientY) {
-      if (!joystick.active) return;
-      let dx = clientX - joystick.baseX;
-      let dy = clientY - joystick.baseY;
-      const dist = Math.sqrt(dx*dx + dy*dy);
-      const clamped = Math.min(dist, JOY_R);
-      const angle   = Math.atan2(dy, dx);
-      const kx = Math.cos(angle) * clamped;
-      const ky = Math.sin(angle) * clamped;
-      joystick.dx = dx / Math.max(dist, 1);
-      joystick.dy = dy / Math.max(dist, 1);
-      // Déplacer le knob visuellement
-      joyKnob.style.left = (50 + kx / 70 * 100) + '%';
-      joyKnob.style.top  = (50 + ky / 70 * 100) + '%';
-      // Couleur selon intensité
-      const intensity = Math.min(dist / JOY_R, 1);
-      joyKnob.style.boxShadow = `0 0 ${8 + intensity * 20}px rgba(0,245,255,${0.4 + intensity * 0.5}), inset 0 0 10px rgba(255,255,255,0.1)`;
-    }
-
-    function joyEnd() {
-      joystick.active = false;
-      joystick.dx = 0;
-      joystick.dy = 0;
-      joyTouchId = null;
-      joyKnob.style.left = '50%';
-      joyKnob.style.top  = '50%';
-      joyKnob.style.boxShadow = '0 0 18px rgba(0,245,255,0.5), inset 0 0 10px rgba(255,255,255,0.1)';
-    }
-
-    joyZone.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      if (joyTouchId === null) {
-        const t = e.changedTouches[0];
-        joyTouchId = t.identifier;
-        joyStart(t.clientX, t.clientY);
-      }
-    }, { passive: false });
-
-    joyZone.addEventListener('touchmove', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      for (const t of e.changedTouches) {
-        if (t.identifier === joyTouchId) {
-          joyMove(t.clientX, t.clientY);
-          break;
-        }
-      }
-    }, { passive: false });
-
-    joyZone.addEventListener('touchend', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      for (const t of e.changedTouches) {
-        if (t.identifier === joyTouchId) { joyEnd(); break; }
-      }
-    }, { passive: false });
-
-    joyZone.addEventListener('touchcancel', (e) => { joyEnd(); }, { passive: false });
-  }
-
-  // Canvas touch : pour les taps sur le canvas (pas joystick)
+  // ═══ TOUCH / MOBILE (Android + iPhone) ═══
+  // Joystick virtuel dynamique : apparaît là où le doigt touche
   canvas.addEventListener('touchstart', (e) => {
     e.preventDefault();
-    // Ignorer si touche sur la zone joystick
-    const rect = joyZone ? joyZone.getBoundingClientRect() : null;
-    for (const t of e.changedTouches) {
-      if (rect && t.clientX >= rect.left && t.clientX <= rect.right &&
-          t.clientY >= rect.top && t.clientY <= rect.bottom) continue;
-      if (!joystick.active) {
-        touchPos = getTouchCanvasPos(t);
-      }
+    if (!joystick.active && e.touches.length > 0) {
+      touchPos = getTouchCanvasPos(e.touches[0]);
     }
   }, { passive: false });
 
   canvas.addEventListener('touchmove', (e) => {
     e.preventDefault();
-    const rect = joyZone ? joyZone.getBoundingClientRect() : null;
-    for (const t of e.changedTouches) {
-      if (rect && t.clientX >= rect.left && t.clientX <= rect.right &&
-          t.clientY >= rect.top && t.clientY <= rect.bottom) continue;
-      if (!joystick.active) {
-        touchPos = getTouchCanvasPos(t);
-      }
+    if (!joystick.active && e.touches.length > 0) {
+      touchPos = getTouchCanvasPos(e.touches[0]);
     }
   }, { passive: false });
 
   canvas.addEventListener('touchend', (e) => {
-    if (e.touches.length === 0 && !joystick.active) touchPos = null;
+    if (e.touches.length === 0) touchPos = null;
   }, { passive: false });
 
   // === POINTER/MOUSE sur DOCUMENT entier (pas juste canvas) ===
@@ -7969,23 +7830,7 @@ function useSkill(slotIndex) {
 
 // \u{2500}\u{2500} GAME LOOP \u{2500}\u{2500}
 let lastTime = 0;
-const IS_MOBILE  = /Android|iPhone|iPad|Mobile|Tablet/i.test(navigator.userAgent) || ('ontouchstart' in window && navigator.maxTouchPoints > 1);
-const IS_STANDALONE = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-
-// Joystick visible uniquement dans l'APK / PWA installée
-(function() {
-  const jz = document.getElementById('joystickZone');
-  if (jz && IS_STANDALONE) jz.style.display = 'block';
-})();
-
-// === PLEIN ECRAN AUTOMATIQUE (mobile/APK) ===
-function requestFullscreen() {
-  const el = document.documentElement;
-  const req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen;
-  if (req) try { req.call(el); } catch(e) {}
-  if (screen.orientation && screen.orientation.lock) screen.orientation.lock('landscape').catch(()=>{});
-}
-document.addEventListener('touchstart', function _fsInit() { requestFullscreen(); document.removeEventListener('touchstart', _fsInit); }, { once: true, passive: true });
+const IS_MOBILE  = /Android|iPhone|iPad/i.test(navigator.userAgent);
 const FRAME_MS   = 16.67; // 60fps partout \u{2014} fluiditГѓЖ’Г‚В© maximale
 const GLOW_ON    = false; // desactive shadowBlur partout - trop lourd GPU Canvas2D
 
@@ -10206,7 +10051,7 @@ function closeAdAndRestart() {
       <div>
         <div style="font-family:'Orbitron',monospace;font-size:0.7rem;color:#00f5ff;margin-bottom:0.4rem;">7. Enfants</div>
         <p>SERPEX est déconseillé aux enfants de moins de <strong style="color:#fff;">13 ans</strong> (loi américaine <strong style="color:#fff;">COPPA</strong>) et de moins de <strong style="color:#fff;">16 ans</strong> sans accord parental (règlement européen <strong style="color:#fff;">RGPD</strong>).</p>
-        <p style="margin-top:0.5rem;">Nous ne collectons pas sciemment de données d'enfants mineurs. Si tu es parent et penses que ton enfant a créé un compte, contacte-nous à <a href="/cdn-cgi/l/email-protection#82eae7f0f4e7e1e3f2edf0e3eee7b3b5c2e5efe3ebeeace1edef" style="color:#00f5ff;"><span class="__cf_email__" data-cfemail="f49c918682919795849b86959891c5c3b49399959d98da979b99">[email&#160;protected]</span></a> pour supprimer ses données.</p>
+        <p style="margin-top:0.5rem;">Nous ne collectons pas sciemment de données d'enfants mineurs. Si tu es parent et penses que ton enfant a créé un compte, contacte-nous à <a href="mailto:hervecaporale17@gmail.com" style="color:#00f5ff;">hervecaporale17@gmail.com</a> pour supprimer ses données.</p>
         <p style="margin-top:0.5rem;font-size:0.65rem;color:rgba(255,255,255,0.4);">Pour en savoir plus : <a href="https://www.cnil.fr" target="_blank" style="color:#00f5ff;">cnil.fr</a> (autorité française de protection des données).</p>
       </div>
 
@@ -10234,7 +10079,7 @@ function closeAdAndRestart() {
 
       <div style="background:rgba(255,0,110,0.06);border:1px solid rgba(255,0,110,0.25);border-radius:12px;padding:1rem;">
         <div style="font-family:'Orbitron',monospace;font-size:0.65rem;color:#ff006e;margin-bottom:0.5rem;">&#9993;&#65039; E-MAIL</div>
-        <div style="font-size:0.8rem;color:#fff;font-weight:600;"><a href="/cdn-cgi/l/email-protection#620a071014070103120d10030e07535522050f030b0e4c010d0f" style="color:#00f5ff;"><span class="__cf_email__" data-cfemail="29414c5b5f4c4a4859465b48454c181e694e44484045074a4644">[email&#160;protected]</span></a></div>
+        <div style="font-size:0.8rem;color:#fff;font-weight:600;"><a href="mailto:hervecaporale17@gmail.com" style="color:#00f5ff;">hervecaporale17@gmail.com</a></div>
         <div style="font-size:0.55rem;color:rgba(255,255,255,0.35);margin-top:0.3rem;">Réponse sous 48-72h</div>
       </div>
 
@@ -10283,7 +10128,7 @@ function closeAdAndRestart() {
           URL : <strong style="color:#fff;">serpex-game26.github.io</strong><br>
           Nature : Site personnel / projet indépendant<br>
           Pays : France &#127467;&#127479;<br>
-          Contact : <a href="/cdn-cgi/l/email-protection#49212c3b3f2c2a2839263b28252c787e092e24282025672a2624" style="color:#00f5ff;"><span class="__cf_email__" data-cfemail="dcb4b9aeaab9bfbdacb3aebdb0b9edeb9cbbb1bdb5b0f2bfb3b1">[email&#160;protected]</span></a>
+          Contact : <a href="mailto:hervecaporale17@gmail.com" style="color:#00f5ff;">hervecaporale17@gmail.com</a>
         </div>
       </div>
 
@@ -10366,7 +10211,7 @@ function closeAdAndRestart() {
       <div style="background:rgba(255,215,0,0.06);border:1px solid rgba(255,215,0,0.2);border-radius:12px;padding:1rem;">
         <div style="font-family:'Orbitron',monospace;font-size:0.65rem;color:#ffd700;margin-bottom:0.5rem;">&#128104;&#8205;&#128187; CRÉATEUR</div>
         <p>SERPEX est un projet indépendant créé avec passion. Le jeu est entièrement gratuit et accessible à tous sur navigateur mobile et desktop.</p>
-        <p style="margin-top:0.5rem;">Contact : <a href="/cdn-cgi/l/email-protection#f9919c8b8f9c9a9889968b98959cc8ceb99e94989095d79a9694" style="color:#00f5ff;"><span class="__cf_email__" data-cfemail="ed85889f9b888e8c9d829f8c8188dcdaad8a808c8481c38e8280">[email&#160;protected]</span></a></p>
+        <p style="margin-top:0.5rem;">Contact : <a href="mailto:hervecaporale17@gmail.com" style="color:#00f5ff;">hervecaporale17@gmail.com</a></p>
       </div>
 
       <div style="background:rgba(255,0,110,0.06);border:1px solid rgba(255,0,110,0.2);border-radius:12px;padding:1rem;">
@@ -10403,7 +10248,7 @@ function closeAdAndRestart() {
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 function acceptCookies() {
   localStorage.setItem('cookie_consent', 'accepted');
   document.getElementById('cookieBanner').style.display = 'none';
@@ -10606,36 +10451,27 @@ window.addEventListener('beforeinstallprompt', (e) => {
   if (btn && !inGame) btn.style.display = 'block';
   if (!_pwaIsStandalone()) setTimeout(showPwaPopup, 3000);
 });
-
+// Clic sur le bouton install flottant
+document.addEventListener('DOMContentLoaded', () => {
+  const btnInst = document.getElementById('btn-install');
+  if (btnInst) {
+    btnInst.addEventListener('click', () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => { deferredPrompt = null; });
+      } else {
+        showPwaPopup();
+      }
+    });
+  }
+});
 window.addEventListener('appinstalled', () => {
   hidePwaPopup();
   const btn = document.getElementById('btn-install');
   if (btn) btn.style.display = 'none';
   deferredPrompt = null;
-});
-
-// Fallback: si pas de beforeinstallprompt (iOS/déjà installé), afficher après délai
-window.addEventListener('load', () => {
-  if (!_pwaIsStandalone()) {
-    setTimeout(() => {
-      if (!deferredPrompt && !_pwaShownSession) {
-        // iOS : afficher quand même le popup (instructions manuelles)
-        // On skip pour ne pas déranger sans possibilité d'installation automatique
-      }
-    }, 8000);
-  }
-});
-
-document.getElementById('btn-install')?.addEventListener('click', () => {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(() => {
-      deferredPrompt = null;
-      hidePwaPopup();
-    });
-  }
+  _pwaShownSession = true;
 });
 </script>
-
 </body>
 </html>
